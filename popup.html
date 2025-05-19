@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>LeetCode Question</title>
+  <style>
+    body {
+      width: 400px;
+      height: 600px;
+      margin: 0;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f9fafb;
+      color: #222;
+      overflow: hidden;
+    }
+    .header {
+      background: linear-gradient(90deg, #ff9800 0%, #ff5722 100%);
+      color: #fff;
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+    }
+    .header .icon {
+      background: #fff;
+      color: #ff9800;
+      border-radius: 50%;
+      padding: 6px;
+      margin-right: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .header-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .question-card {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+      margin: 20px 16px 0 16px;
+      padding: 18px 18px 10px 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .question-title {
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #ff9800;
+      margin-bottom: 2px;
+    }
+    .find-btn {
+      background: #22c55e;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px 18px;
+      font-size: 1rem;
+      font-weight: 500;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: background 0.2s;
+    }
+    .find-btn:hover {
+      background: #16a34a;
+    }
+    .tabs {
+      display: flex;
+      border-bottom: 1px solid #eee;
+      margin: 18px 0 0 0;
+      padding: 0 16px;
+      gap: 2px;
+    }
+    .tab {
+      flex: 1;
+      text-align: center;
+      padding: 10px 0 8px 0;
+      cursor: pointer;
+      font-weight: 500;
+      color: #888;
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border 0.2s;
+    }
+    .tab.active {
+      color: #ff9800;
+      border-bottom: 2px solid #ff9800;
+      background: #fff;
+    }
+    .tab-content {
+      display: none;
+      padding: 18px 16px 0 16px;
+      height: 220px;
+      overflow-y: auto;
+    }
+    .tab-content.active {
+      display: block;
+    }
+    .code-block {
+      background: #222;
+      color: #fff;
+      border-radius: 8px;
+      padding: 16px;
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      font-size: 14px;
+      position: relative;
+      margin-bottom: 12px;
+      overflow-x: auto;
+    }
+    .copy-btn {
+      position: absolute;
+      top: 10px;
+      right: 14px;
+      background: #22c55e;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 10px;
+      font-size: 12px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .copy-btn:hover {
+      background: #16a34a;
+    }
+    .complexity-row {
+      display: flex;
+      gap: 16px;
+      margin-top: 10px;
+    }
+    .complexity-label {
+      font-weight: 600;
+      color: #555;
+      font-size: 13px;
+    }
+    .complexity-value {
+      font-family: 'Fira Mono', 'Consolas', monospace;
+      background: #f3f4f6;
+      color: #222;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 12px;
+      margin-left: 4px;
+    }
+    .footer {
+      border-top: 1px solid #eee;
+      background: #fff;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: #888;
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+    }
+    .footer-btn {
+      background: #f3f4f6;
+      border: none;
+      border-radius: 4px;
+      padding: 4px 10px;
+      color: #555;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .footer-btn:hover {
+      background: #e5e7eb;
+    }
+    #loadingText {
+      margin-top: 12px;
+      color: #888;
+      text-align: center;
+      font-size: 15px;
+      font-style: italic;
+    }
+    .error-message {
+      color: #dc3545;
+      padding: 16px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-title">
+      <span class="icon">
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M16 18v-1a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v1"/><circle cx="12" cy="7" r="4"/></svg>
+      </span>
+      LeetCode Question
+    </div>
+    <a id="leetcodeLink" href="#" target="_blank" style="color:#fff;">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </a>
+  </div>
+  <div class="question-card">
+    <div id="questionTitle" class="question-title"></div>
+    <button id="sendToDeepSeek" class="find-btn">Find Answer</button>
+    <div id="loadingText" style="display:none;">Loading...</div>
+    <div id="errorMessage" class="error-message" style="display: none;"></div>
+  </div>
+  <div class="tabs">
+    <button class="tab active" data-tab="solution">Solution</button>
+    <button class="tab" data-tab="explanation">Explanation</button>
+    <button class="tab" data-tab="problem">Problem</button>
+  </div>
+  <button id="toggleRawBtn" style="margin: 10px 16px 0 16px; padding: 4px 10px; font-size: 12px; border-radius: 4px; border: 1px solid #eee; background: #fff; color: #888; cursor: pointer;">Show Raw AI Response</button>
+  <pre id="rawAIResponse" style="display:none; margin: 10px 16px; background: #f3f4f6; color: #333; padding: 10px; border-radius: 6px; font-size: 12px; max-height: 120px; overflow:auto;"></pre>
+  <div id="tab-solution" class="tab-content active"></div>
+  <div id="tab-explanation" class="tab-content"></div>
+  <div id="tab-problem" class="tab-content"></div>
+  <div class="footer">
+    <button class="footer-btn" id="prevBtn">
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+      Previous
+    </button>
+    <span id="footerInfo">Question</span>
+    <button class="footer-btn" id="nextBtn">
+      Next
+      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html> 
