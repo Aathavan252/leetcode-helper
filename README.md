@@ -43,8 +43,4 @@ A modern, beautiful Chrome extension that extracts the current LeetCode problem'
 - No build step required — just edit and reload in Chrome.
 - Uses only HTML, CSS, and vanilla JS for maximum compatibility.
 
-## License
-
-MIT
-
 ---
