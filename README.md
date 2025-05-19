@@ -2,7 +2,7 @@
 
 A modern, beautiful Chrome extension that extracts the current LeetCode problem's title, description, and your selected programming language, then fetches a complete solution, explanation, and complexity analysis from DeepSeek AI (via OpenRouter API) — all in a sleek popup UI with tabs.
 
-![screenshot](screenshot.png)
+![screenshot](Screenshot%202025-05-19%20121217.png)
 
 ## Features
 
